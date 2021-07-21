@@ -1,22 +1,20 @@
 import discord
+from discord.ext import commands
 
-client = discord.Client()
+desc = 'Just another Discord bot for personal use'
+intents = discord.Intents.default()
+intents.members = True
 
-global botPrefix
+bot = commands.Bot(command_prefix='>', description=desc, intents=intents)
 
-@client.event
+@bot.event
 async def on_ready():
-    print("Logged in as: " + client.user.name)
-    print(client.user.name + " is now logged in!")
-    botPrefix = ">"
-    print("Bot prefix is set to: " + botPrefix)
+    print("Logged in as: " + bot.user.name)
+    print("Default Prefix set at: " + bot.command_prefix)
+    print("Cupcake bot activated!")
+   
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hi there!")
 
-# Commands go here
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content.startswith(botPrefix + "hello"):
-        await message.channel.send("Cupcake Bot is running")
-
-client.run('token')
+bot.run('token')
