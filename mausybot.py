@@ -15,6 +15,18 @@ async def on_ready():
    
 @bot.command()
 async def hello(ctx):
-    await ctx.send("Hi there!")
+    await ctx.send("Mishka Bot has been initialized!")
+
+@bot.command()
+async def dmme(ctx, *, args):
+    await ctx.author.send("Hello there, " + ctx.author.name)
+
+# ADMIN HELPER COMMANDS
+@bot.command()
+async def getchid(ctx, *, given_name=None):
+    channel = discord.utils.get(ctx.guild.channels, name=given_name)
+    channel_id = channel.id
+    text_channel = bot.get_channel(channel_id)
+    await ctx.send(text_channel.mention + " ID is " + str(channel_id))
 
 bot.run('token')
