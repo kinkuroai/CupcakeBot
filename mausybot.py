@@ -17,6 +17,6 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith(botPrefix + "hello"):
-        await message.channel.send("Cupcake Bot is running, Master Mavz.")
+        await message.channel.send("Cupcake Bot is running")
 
 client.run('token')
