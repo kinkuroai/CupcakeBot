@@ -16,6 +16,10 @@ class Basics(commands.Cog):
         await ctx.send(msg)
         await ctx.message.delete()
     
+    @commands.command(name='anitest')
+    async def do_anitest(self, ctx, *, title):
+        pass
+
     # Search anime on MAL
     @commands.command(name='anime', aliases=['animu', 'ani'])
     async def do_anime(self, ctx, *, title):

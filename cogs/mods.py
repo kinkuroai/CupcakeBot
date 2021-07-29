@@ -13,8 +13,12 @@ class Mods(commands.Cog):
     @commands.command(name='ban')
     @commands.has_guild_permissions(ban_members=True)
     async def do_ban(self, ctx, member: discord.Member, *, reason=None):
-        await member.ban(reason = reason)
-        await ctx.send(f"{member} was banned for {reason}")
+        try:
+            await member.ban(reason = reason)
+        except:
+            print(f'Unable to ban {member}.')
+        else:
+            await ctx.send(f"{member} was banned for {reason}")
 
     # Unban someone
     @commands.command(name='unban')
@@ -30,6 +34,17 @@ class Mods(commands.Cog):
         else:
             member = await self.bot.fetch_user(int(member))
             await ctx.guild.unban(member)
+
+    # Kick someone
+    @commands.command(name='kick')
+    @commands.has_guild_permissions(ban_members=True)
+    async def do_kick(self, ctx, member: discord.Member, *, reason=None):
+        try:
+            await member.kick(reason = reason)
+        except:
+            print(f'Unable to kick {member}.')
+        else:
+            await ctx.send(f'{member} kicked for {reason}')
 
     # Get ban list
     @commands.command(name='getbans')

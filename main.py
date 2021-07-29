@@ -3,16 +3,20 @@ from discord.ext import commands
 import sys, traceback
 
 BOT_TOKEN = 'TOKEN'
+BOT_ACTIVITY = 'STATUS HERE'
 
 def get_prefix(bot, message):
     # The bot's prefixes
     prefixes = ['?', "$", "m!", "m>"]
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
-initial_extensions = ['cogs.basics', 'cogs.mods', 'cogs.owner']
+initial_extensions = ['cogs.basics', 'cogs.mods', 'cogs.owner', 'helpers.roles', 'helpers.error_handling']
 desc = 'Just another personal discord bot.'
 
-bot = commands.Bot(command_prefix=get_prefix, description=desc)
+intents = discord.Intents.default()
+intents.members = True
+
+bot = commands.Bot(command_prefix=get_prefix, description=desc, intents=intents)
 
 # Loading the extensions
 if __name__ == '__main__':
@@ -22,7 +26,7 @@ if __name__ == '__main__':
 @bot.event
 async def on_ready():
     print(f'Logged in as: {bot.user.name} - {bot.user.id}')
-    await bot.change_presence(activity=discord.Game(name="a game."))
-    print(f'C3Bot successfully booted!')
+    await bot.change_presence(activity=discord.Game(name=BOT_ACTIVITY))
+    print('BOT SUCCESSFULLY CONNECTED!')
 
 bot.run(BOT_TOKEN, bot=True, reconnect=True)
