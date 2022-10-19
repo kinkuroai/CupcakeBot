@@ -8,14 +8,13 @@ class CommandErrorHandler(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-    
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('ErrorHandling Cog: LOADED!')
+
+    async def cog_load(self):
+        print("ErrorHandling Cog: Loaded!")
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        
+
         # This prevents any commands with local handlers being handled here in on_command_error.
         if hasattr(ctx.command, 'on_error'):
             return
@@ -44,12 +43,12 @@ class CommandErrorHandler(commands.Cog):
                 await ctx.author.send(f'{ctx.command} can not be used in Private Messages.')
             except discord.HTTPException:
                 pass
-            
+
         elif isinstance(error, commands.NotOwner):
             await ctx.author.send('Only **`ADMINISTRATORS`** are allowed to use this command.')
 
         elif isinstance(error, commands.MissingPermissions):
             await ctx.author.send('Insufficient permissions to proceed. Please contact an **`ADMINISTRATOR`**.')
 
-def setup(bot):
-    bot.add_cog(CommandErrorHandler(bot))
+async def setup(bot):
+    await bot.add_cog(CommandErrorHandler(bot))

@@ -4,11 +4,10 @@ from discord.ext import commands
 class Owner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('Owner Cog: LOADED!')
-    
+
+    async def cog_load(self):
+        print("Owner Cog: Loaded!")
+
     # Get Channel ID
     @commands.command(name='getchid', aliases=['cid'], hidden=True)
     @commands.is_owner()
@@ -36,7 +35,7 @@ class Owner(commands.Cog):
                 chanid = ctx.message.channel.id
                 channame = ctx.message.channel.name
                 print(f'Successfully purged: #{channame} - ID:{chanid}')
-    
+
     # Load extension
     @commands.command(name='load', hidden=True)
     @commands.is_owner()
@@ -69,6 +68,6 @@ class Owner(commands.Cog):
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
         else:
             await ctx.send(f'**`RELOADED EXTENSION!`**')
-        
-def setup(bot):
-    bot.add_cog(Owner(bot))
+
+async def setup(bot):
+    await bot.add_cog(Owner(bot))

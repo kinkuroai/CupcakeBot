@@ -4,10 +4,9 @@ from discord.ext import commands
 class RoleManager(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('RoleManager Cog: LOADED!')
+
+    async def cog_load(self):
+        print("RoleManager Cog: Loaded!")
 
     # Autorole | TO ADD: Custom roles, etc
     @commands.Cog.listener()
@@ -18,7 +17,7 @@ class RoleManager(commands.Cog):
             print('Success')
         except:
             print('Failed to do anything.')
-    
+
     # Make the bot create vanity roles
     @commands.command(name='crole')
     @commands.has_guild_permissions(manage_roles=True)
@@ -34,7 +33,7 @@ class RoleManager(commands.Cog):
                 await ctx.author.send(f'{role} was created.')
         else:
             await ctx.author.send(f'{role} already exists!')
-    
+
     # Give role to users
     @commands.command(name='addrole')
     @commands.has_guild_permissions(manage_roles=True)
@@ -46,7 +45,7 @@ class RoleManager(commands.Cog):
             raise e
         else:
             await ctx.send(f'{member.display_name} has **`{role.name}`** as a new role!')
-    
+
     # Remove user role
     @commands.command(name='remrole')
     @commands.has_guild_permissions(manage_roles=True)
@@ -58,7 +57,7 @@ class RoleManager(commands.Cog):
             raise e
         else:
             await ctx.send(f'{member.display_name} is removed from **`{role.name}`** role.')
-    
+
     # Delete a role
     @commands.command(name='drole')
     @commands.has_guild_permissions(manage_roles=True)
@@ -73,5 +72,5 @@ class RoleManager(commands.Cog):
         else:
             await ctx.send('Role not found.')
 
-def setup(bot):
-    bot.add_cog(RoleManager(bot))
+async def setup(bot):
+    await bot.add_cog(RoleManager(bot))
