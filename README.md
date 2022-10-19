@@ -3,10 +3,10 @@ A Discord bot for my personal use.
 
 Updated mostly for Discord.py 2.0
 
-[] Migrate fully to hybrid commands
-[X] Add more commands
-[] Find a better MAL API
-[] Add a better syncing command
+>[] Migrate fully to hybrid commands
+>[X] Add more commands
+>[] Find a better MAL API
+>[] Add a better syncing command
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
