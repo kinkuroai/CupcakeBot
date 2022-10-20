@@ -3,15 +3,15 @@ A Discord bot for my personal use.
 
 Updated mostly for Discord.py 2.0
 
->[] Migrate fully to hybrid commands
->[X] Add more commands
->[] Find a better MAL API
->[] Add a better syncing command
+* >[] Migrate fully to hybrid commands
+* >[X] Add more commands
+* >[X] Find a better MAL API
+* >[X] Switched to 'aiohttp' from 'requests'
+* >[] Add a better syncing command
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
 * >anime <title> - Searches MAL for anime
-* >manga <title> - Searches MAL for manga
 * >waifu <sfw/nsfw> - Posts a random waifu picture based on your preference
 * >facts - Sends a random fun fact
 

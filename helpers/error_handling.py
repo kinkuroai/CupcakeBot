@@ -3,10 +3,9 @@ import traceback
 import sys
 from discord.ext import commands
 
-
 class CommandErrorHandler(commands.Cog):
 
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
     async def cog_load(self):
@@ -14,41 +13,21 @@ class CommandErrorHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
+        # If command does not exist
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.send("`That command does not exist!`")
 
-        # This prevents any commands with local handlers being handled here in on_command_error.
-        if hasattr(ctx.command, 'on_error'):
-            return
+        # If command is disabled
+        elif isinstance(error, commands.DisabledCommand):
+            await ctx.send("`That command is currently disabled!`")
 
-        # This prevents any cogs with an overwritten cog_command_error being handled here.
-        cog = ctx.cog
-        if cog:
-            if cog._get_overridden_method(cog.cog_command_error) is not None:
-                return
+        # If member is not found
+        elif isinstance(error, commands.MemberNotFound):
+            await ctx.send("`User does not exist!`")
 
-        ignored = (commands.CommandNotFound)
-
-        # Allows us to check for original exceptions raised and sent to CommandInvokeError.
-        # If nothing is found. We keep the exception passed to on_command_error.
-        error = getattr(error, 'original', error)
-
-        # Anything in ignored will return and prevent anything happening.
-        if isinstance(error, ignored):
-            return
-
-        if isinstance(error, commands.DisabledCommand):
-            await ctx.send(f'{ctx.command} has been disabled.')
-
-        elif isinstance(error, commands.NoPrivateMessage):
-            try:
-                await ctx.author.send(f'{ctx.command} can not be used in Private Messages.')
-            except discord.HTTPException:
-                pass
-
-        elif isinstance(error, commands.NotOwner):
-            await ctx.author.send('Only **`ADMINISTRATORS`** are allowed to use this command.')
-
+        # If command-user doesn't have the necessary permissions
         elif isinstance(error, commands.MissingPermissions):
-            await ctx.author.send('Insufficient permissions to proceed. Please contact an **`ADMINISTRATOR`**.')
+            await ctx.send("`You do not have the required permissions to use this command!`")
 
-async def setup(bot):
+async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(CommandErrorHandler(bot))
