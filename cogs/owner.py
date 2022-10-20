@@ -8,34 +8,32 @@ class Owner(commands.Cog):
     async def cog_load(self):
         print("Owner Cog: Loaded!")
 
-    # Get Channel ID
-    @commands.command(name='getchid', aliases=['cid'], hidden=True)
-    @commands.is_owner()
-    async def do_getchid(self, ctx, *, given_name=None):
-        try:
-            channel = discord.utils.get(ctx.guild.channels, name=given_name)
-            channel_id = channel.id
-            text_channel = self.bot.get_channel(channel_id)
-        except:
-            print('Unable to get CHANNEL ID.')
-        else:
-            await ctx.author.send(text_channel.mention + " ID is " + str(channel_id))
-
     # Channel Purge
-    @commands.command(name='purge', aliases=['clear'], hidden=True)
+    @commands.command(name='purge', hidden=True)
     @commands.is_owner()
     async def do_purge(self, ctx):
-            try:
-                await ctx.channel.purge()
-            except:
-                chanid = ctx.message.channel.id
-                channame = ctx.message.channel.name
-                print(f'Unable to purge: #{channame} - ID:{chanid}')
-            else:
-                chanid = ctx.message.channel.id
-                channame = ctx.message.channel.name
-                print(f'Successfully purged: #{channame} - ID:{chanid}')
-
+        try:
+            await ctx.channel.purge()
+        except:
+            chanid = ctx.message.channel.id
+            channame = ctx.message.channel.name
+            print(f'Unable to purge: #{channame} - ID:{chanid}')
+        else:
+            chanid = ctx.message.channel.id
+            channame = ctx.message.channel.name
+            print(f'Successfully purged: #{channame}(ID:{chanid})')
+    
+    # Get Channel ID and name
+    @commands.command(name='getchaninfo', hidden=True)
+    @commands.is_owner()
+    async def do_getchaninfo(self, ctx: commands.Bot) -> None:
+        try:
+            chanid = ctx.message.channel.id
+            channame = ctx.message.channel.name
+            await ctx.author.send(f"Channel ID: {chanid} - Channel Name: {channame}")
+        except:
+            print("Unable to process command.")
+            
     # Load extension
     @commands.command(name='load', hidden=True)
     @commands.is_owner()

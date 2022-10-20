@@ -1,6 +1,5 @@
 import discord
 import os
-import requests
 import aiohttp
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -20,7 +19,8 @@ class Basics(commands.Cog):
     async def do_say(self, ctx: commands.Context, *, msg: str) -> None:
         await ctx.send(msg)
         await ctx.message.delete()
-
+    
+    # Summons a random waifu
     @commands.hybrid_command(name="waifu")
     async def get_waifu(self, ctx: commands.Context, a: str) -> None:
         async with aiohttp.ClientSession() as session:
@@ -42,7 +42,8 @@ class Basics(commands.Cog):
                         await ctx.send(waifu_image)
                     else:
                         print("`Unable to process command. Please try again.`")
-
+    
+    # Just some random facts you may not know
     @commands.hybrid_command(name="facts")
     async def get_facts(self, ctx: commands.Context) -> None:
         async with aiohttp.ClientSession() as session:

@@ -29,8 +29,8 @@ class AnimeSearch(commands.Cog):
             print("Something went wrong.")
 
         else:
-            print(title_english)
-            print(status)
+            #print(title_english)
+            #print(status)
 
             embed = discord.Embed(title=f"{title_english} - {title_japanese}", description=f"{synopsis}")
             embed.set_image(url=image)

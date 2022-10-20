@@ -1,10 +1,10 @@
 import discord
 import typing
 import asyncio
-from dotenv import load_dotenv
-from discord.ext import commands
 import os
 import logging
+from discord.ext import commands
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -21,8 +21,6 @@ print("""
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 BOT_ACTIVITY = os.getenv("BOT_ACTIVITY")
 GUILD_ID = os.getenv("GUILD_ID")
-AUTOROLE_ID = os.getenv("AUTOROLE_ID")
-WELCOME_CHANNEL = os.getenv("WELCOME_CHANNEL")
 DESCRIPTION = os.getenv("DESCRIPTION")
 
 # Intents
@@ -55,24 +53,6 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=BOT_ACTIVITY))
     print(f'Logged in as: {bot.user.name}({bot.user.id})')
     print("Bot successfully connected!")
-
-@bot.event
-async def on_member_join(member):
-    channel = discord.utils.get(member.guild.channels, name=WELCOME_CHANNEL)
-
-    r = requests.get('https://api.waifu.im/random/?&gif=true')
-    result = r.json()
-
-    embed = discord.Embed(title="Hello there!", description=f"Welcome to the server, {member.mention}!")
-    embed.set_image(url=result['images'][0]['url'])
-
-    await channel.send(embed=embed)
-
-    guild = client.get_guild(GUILD_ID)
-    role = guild.get_role(AUTOROLE_ID)
-    await member.add_roles(role)
-
-
 
 async def main():
     async with bot:

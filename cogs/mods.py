@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+"""
+Going to rewrite the mod commands since most of them, discord does a lot better.
+"""
 
 class Mods(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
