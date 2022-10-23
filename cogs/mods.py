@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+
 """
 Going to rewrite the mod commands since most of them, discord does a lot better.
 """
@@ -12,7 +13,7 @@ class Mods(commands.Cog):
         print("Mods Cog: Loaded!")
 
     # Ban someome
-    @commands.hybrid_command(name='ban')
+    @commands.command(name='ban')
     @commands.has_guild_permissions(ban_members=True)
     async def do_ban(self, ctx, member: discord.Member, *, reason=None):
         try:
@@ -23,7 +24,7 @@ class Mods(commands.Cog):
             await ctx.send(f"{member} was banned for {reason}")
 
     # Unban someone
-    @commands.hybrid_command(name='unban')
+    @commands.command(name='unban')
     @commands.has_guild_permissions(ban_members=True)
     async def do_unban(self, ctx, *, member):
         if "#" in ctx.message.content:
@@ -38,7 +39,7 @@ class Mods(commands.Cog):
             await ctx.guild.unban(member)
 
     # Kick someone
-    @commands.hybrid_command(name='kick')
+    @commands.command(name='kick')
     @commands.has_guild_permissions(ban_members=True)
     async def do_kick(self, ctx, member: discord.Member, *, reason=None):
         try:
@@ -49,7 +50,7 @@ class Mods(commands.Cog):
             await ctx.send(f'{member} kicked for {reason}')
 
     # Get ban list
-    @commands.hybrid_command(name='getbans')
+    @commands.command(name='getbans')
     @commands.has_guild_permissions(ban_members=True)
     async def do_getbans(self, ctx: commands.Context):
         bannedId = await ctx.guild.bans()

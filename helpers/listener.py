@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 WELCOME_CHANNEL = os.getenv('WELCOME_CHANNEL')
 AUTOROLE_NAME = os.getenv('AUTOROLE_NAME')
+LOGGING_CHANNEL = os.getenv('LOGGING_CHANNEL')
 
 class CakeListener(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -18,8 +19,11 @@ class CakeListener(commands.Cog):
     # Autorole | TO ADD: Custom roles, etc
     @commands.Cog.listener()
     async def on_member_join(self, member):
+
         give_role = discord.utils.get(member.guild.roles, name=AUTOROLE_NAME)
         channel = discord.utils.get(member.guild.channels, name=WELCOME_CHANNEL)
+        logging_chan = discord.utils.get(member.guild.channels, name=LOGGING_CHANNEL)
+
         print("{Someone Joined")
         try:
             async with aiohttp.ClientSession() as session:
@@ -30,6 +34,8 @@ class CakeListener(commands.Cog):
                     embed.set_image(url=hello_image)
                     await channel.send(embed=embed)
                     await member.add_roles(give_role)
+                    await logging_chan.send(f"`{member} joined the server and was given the {give_role} role.`")
+                    
         except:
             print('Failed to do anything.')
 

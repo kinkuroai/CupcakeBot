@@ -2,10 +2,6 @@ import discord
 import os
 import aiohttp
 from discord.ext import commands
-from dotenv import load_dotenv
-
-load_dotenv()
-BOT_ZONE = os.getenv('BOT_ZONE')
 
 class Basics(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -15,7 +11,7 @@ class Basics(commands.Cog):
         print('Basics Cog: Loaded!')
 
     # Make the bot say something
-    @commands.hybrid_command(name='say', aliases=['repeat', 'again'])
+    @commands.hybrid_command(name='say')
     async def do_say(self, ctx: commands.Context, *, msg: str) -> None:
         await ctx.send(msg)
         await ctx.message.delete()
@@ -32,7 +28,7 @@ class Basics(commands.Cog):
                         print(waifu_image)
                         await ctx.send(waifu_image)
                     else:
-                        print("`Unable to process command. Please try again.`")
+                        await ctx.send("`Unable to process command. Please try again.`")
             elif a == 'sfw':
                 async with session.get('https://api.waifu.im/random/?selected_tags=waifu') as r:
                     result = await r.json()
@@ -41,7 +37,7 @@ class Basics(commands.Cog):
                         print(waifu_image)
                         await ctx.send(waifu_image)
                     else:
-                        print("`Unable to process command. Please try again.`")
+                        await ctx.send("`Unable to process command. Please try again.`")
     
     # Just some random facts you may not know
     @commands.hybrid_command(name="facts")
