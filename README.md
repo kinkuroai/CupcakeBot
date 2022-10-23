@@ -6,12 +6,12 @@ I made this bot for the sole purpose of using it on my own small server and to l
 This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/discord.py).
 
 # To-Do
-* > - [] Migrate fully to hybrid commands
-* > - [X] Add more commands
-* > - [X] Find a better MAL API
-* > - [X] Switched to 'aiohttp' from 'requests'
-* > - [] Add a better syncing command
-* > - [] Fix README
+- [ ] Migrate fully to hybrid commands
+- [X] Add more commands
+- [X] Find a better MAL API
+- [X] Switched to 'aiohttp' from 'requests'
+- [ ] Add a better syncing command
+- [ ] Fix README
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
