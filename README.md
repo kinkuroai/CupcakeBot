@@ -1,15 +1,17 @@
 # CupcakeBot
 A Discord bot for my personal use.
 
-Updated mostly for Discord.py 2.0
+I made this bot for the sole purpose of using it on my own small server and to learn more about Python. I also wanted to share it here just in case there are new people who want to get into making their own Discord bots. Take note that this is a very basic Discord bot without all the advenced programming shenanigans since it's mainly focused to have beginners like myself know that it is simple as it can be.
+
+This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/discord.py).
 
 # To-Do
-* >[] Migrate fully to hybrid commands
-* >[X] Add more commands
-* >[X] Find a better MAL API
-* >[X] Switched to 'aiohttp' from 'requests'
-* >[] Add a better syncing command
-* >[] Fix README
+* > - [] Migrate fully to hybrid commands
+* > - [X] Add more commands
+* > - [X] Find a better MAL API
+* > - [X] Switched to 'aiohttp' from 'requests'
+* > - [] Add a better syncing command
+* > - [] Fix README
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
