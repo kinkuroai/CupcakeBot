@@ -31,7 +31,7 @@ class AnimeSearch(commands.Cog):
                     episodes = result['data'][0]['episodes']
                     status = result['data'][0]['status']
 
-                    embed = discord.Embed(url="https://google.com/", title=f"{title_english} - {title_japanese}", description=f"{synopsis}")
+                    embed = discord.Embed(title=f"{title_english} - {title_japanese}", description=f"{synopsis}")
                     embed.set_image(url=image)
                     embed.add_field(name="Score", value=score, inline=True)
                     embed.add_field(name="Episodes", value=episodes, inline=True)
