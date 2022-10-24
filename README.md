@@ -6,20 +6,19 @@ I made this bot for the sole purpose of using it on my own small server and to l
 This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/discord.py).
 
 # To-Do
-- [ ] Migrate fully to hybrid commands
+- [X] Update to make it work for Discord.py 2.0
+- [X] Migrate fully to hybrid commands
 - [X] Add more commands
 - [X] Find a better MAL API
-- [X] Switched to 'aiohttp' from 'requests'
+- [X] Switched to '[aiohttp](https://pypi.org/project/aiohttp/)' from '[requests](https://pypi.org/project/requests/)'
 - [ ] Add a better syncing command
-- [ ] Fix README
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
-* >anime <title> - Searches MAL for anime
+* >anime <title> - Searches [MyAnimeList.net](https://myanimelist.net/) for anime
 * >waifu <sfw/nsfw> - Posts a random waifu picture based on your preference
 * >facts - Sends a random fun fact
 * >aniquote <name of character> - Posts a random quote of a specified character. If no characters are specified, it randomly grabs a quote.
-
 
 # Moderator Commands
 * I will be updating the commands here because most of them, discord does better.
@@ -33,11 +32,12 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >reload <extension_name> - Reloads specific cogs (ex: ?reload cogs.anime | ?reload helpers.listener)
 
 # Notes
-* >CupcakeBot relies heavily on 'dotenv' and 'aiohttp'. You can set various variables in the '.env.example' file and change it to your liking - just make sure you rename it to '.env'.
-* >Some commands are still a work in progress since this bot is supposedly just for my personal use.
+* CupcakeBot relies heavily on '[dotenv](https://pypi.org/project/python-dotenv/)' and '[aiohttp](https://pypi.org/project/aiohttp/)'. You can set various variables in the '[.env.example](https://github.com/mavz42/CupcakeBot/blob/main/.env.example)' file and change it to your liking - just make sure you rename it to '.env'.
+* Some commands are still a work in progress since this bot is supposedly just for my personal use.
 
 # Requirements
-To do
+Do `pip install -r requirements.txt` in the cloned directory.\
+Note that this is a work in progress and some stuff might be added or removed.
 
 # Usage
 To do
