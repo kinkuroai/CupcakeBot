@@ -11,6 +11,9 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 - [X] Add more commands
 - [X] Find a better MAL API
 - [X] Switched to '[aiohttp](https://pypi.org/project/aiohttp/)' from '[requests](https://pypi.org/project/requests/)'
+- [ ] Uhh.. Some music?
+- [ ] Add a database
+- [ ] Add more uncommon stuff
 - [ ] Add a better syncing command
 
 # User Commands

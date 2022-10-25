@@ -11,6 +11,7 @@ class Owner(commands.Cog):
 
     # Channel Purge
     @commands.command(name='purge', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_purge(self, ctx: commands.Context) -> None:
         try:
@@ -24,15 +25,15 @@ class Owner(commands.Cog):
             channame = ctx.message.channel.name
             print(f'Successfully purged: #{channame}(ID:{chanid})')
     
-    # Sync Commands
+    # Sync Commands (Very bad implementation)
     @commands.command(name='syncnow', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_syncnow(self, ctx: commands.Context) -> None:
         '''
         Temporary sync command. Works but I feel like there's a better way to do it.
         '''
         try:
-            print(discord.Object(0))
             await self.bot.tree.sync()
         except:
             print("Something went wrong!!")
@@ -41,6 +42,7 @@ class Owner(commands.Cog):
     
     # Get Channel ID and name
     @commands.command(name='getchaninfo', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_getchaninfo(self, ctx: commands.Context) -> None:
         try:
@@ -52,6 +54,7 @@ class Owner(commands.Cog):
             
     # Load extension
     @commands.command(name='load', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_load(self, ctx: commands.Context, cog: str) -> None:
         try:
@@ -63,6 +66,7 @@ class Owner(commands.Cog):
 
     # Unload extension
     @commands.command(name='unload', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_unload(self, ctx: commands.Context, cog: str) -> None:
         try:
@@ -74,6 +78,7 @@ class Owner(commands.Cog):
 
     # Reload extension
     @commands.command(name='reload', hidden=True)
+    @commands.guild_only()
     @commands.is_owner()
     async def do_reload(self, ctx: commands.Context, cog: str) -> None:
         try:

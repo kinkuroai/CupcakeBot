@@ -24,7 +24,6 @@ class CakeListener(commands.Cog):
         channel = discord.utils.get(member.guild.channels, name=WELCOME_CHANNEL)
         logging_chan = discord.utils.get(member.guild.channels, name=LOGGING_CHANNEL)
 
-        print("{Someone Joined")
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get('https://api.waifu.im/random/?&gif=true') as r:

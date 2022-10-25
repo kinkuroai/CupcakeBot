@@ -1,7 +1,6 @@
 import discord
-import typing
 import asyncio
-import os, time
+import os
 import logging
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -35,35 +34,46 @@ def get_prefix(bot, message):
 
 # Load extensions and helpers
 async def load_extensions():
-    for filename in os.listdir("./cogs"):
-        if filename.endswith(".py"):
-            # cut off the .py from the file name
-            await bot.load_extension(f"cogs.{filename[:-3]}")
+    try:
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py"):
+                await bot.load_extension(f"cogs.{filename[:-3]}")
+    except:
+        print("Loading Extensions failed!")
 
 async def load_helpers():
-    for filename in os.listdir("./helpers"):
-        if filename.endswith(".py"):
-            await bot.load_extension(f"helpers.{filename[:-3]}")
+    try:
+        for filename in os.listdir("./helpers"):
+            if filename.endswith(".py"):
+                await bot.load_extension(f"helpers.{filename[:-3]}")
+    except:
+        print("Loading Helpers failed!")
 
-bot = commands.Bot(command_prefix=get_prefix, description=BOT_DESCRIPTION, intents=intents)
+bot = commands.Bot(command_prefix=get_prefix, description=BOT_DESCRIPTION, intents=intents, activity=discord.Game(name=BOT_ACTIVITY))
 
+# Uhh.. Aesthetics..
 spinner = Halo(text="Bot is currently running..", spinner="dots")
 
 # Running the bot
 @bot.event
-async def on_ready():
-    await bot.change_presence(activity=discord.Game(name=BOT_ACTIVITY))
-    print(f'Logged in as: {bot.user.name}({bot.user.id})')
+async def setup_hook():
+    print(f'Logged in as: {bot.user.name}')
     print("Bot successfully connected!\n")
     spinner.start()
 
+# Stuff to load
 to_load = [load_extensions(), load_helpers()]
 
+# Setup logging (set level to logging.DEBUG for more verbose stuff)
+handler = logging.FileHandler('discord.log', encoding='utf-8', mode='w')
+discord.utils.setup_logging(level=logging.INFO, handler=handler, root=False)
+
+# Running the bot
 async def main():
     async with bot:
         print("==================\nEXTENSIONS AND HELPERS\n==================\n")
-        for i in to_load:
-            await i
+        for exts in to_load:
+            await exts
         print("\n==================\nEXTENSION AND HELPERS\n==================\n")
         await bot.start(BOT_TOKEN)
 

@@ -1,5 +1,4 @@
 import discord
-import os
 import aiohttp
 from discord.ext import commands
 
@@ -12,12 +11,14 @@ class Basics(commands.Cog):
 
     # Make the bot say something
     @commands.hybrid_command(name='say')
+    @commands.guild_only()
     async def do_say(self, ctx: commands.Context, *, msg: str) -> None:
         await ctx.send(msg)
         await ctx.message.delete()
     
     # Summons a random waifu
     @commands.hybrid_command(name="waifu")
+    @commands.guild_only()
     async def get_waifu(self, ctx: commands.Context, a: str) -> None:
         async with aiohttp.ClientSession() as session:
             if a == 'nsfw':
@@ -25,7 +26,6 @@ class Basics(commands.Cog):
                     result = await r.json()
                     waifu_image = result['images'][0]['url']
                     if r.status in {200, 201}:
-                        print(waifu_image)
                         await ctx.send(waifu_image)
                     else:
                         await ctx.send("`Unable to process command. Please try again.`")
@@ -34,19 +34,22 @@ class Basics(commands.Cog):
                     result = await r.json()
                     waifu_image = result['images'][0]['url']
                     if r.status in {200, 201}:
-                        print(waifu_image)
                         await ctx.send(waifu_image)
                     else:
                         await ctx.send("`Unable to process command. Please try again.`")
     
     # Just some random facts you may not know
     @commands.hybrid_command(name="facts")
+    @commands.guild_only()
     async def get_facts(self, ctx: commands.Context) -> None:
         async with aiohttp.ClientSession() as session:
             async with session.get('https://asli-fun-fact-api.herokuapp.com/') as r:
                 result = await r.json()
                 fact = result['data']['fact']
-                await ctx.send(f"Here's a random fact: {fact}")
+                if r.status in {200, 201}:
+                    await ctx.send(f"Here's a random fact: {fact}")
+                else:
+                    await ctx.send("`Unable to process command. Please try again.`")
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Basics(bot))

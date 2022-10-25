@@ -14,8 +14,10 @@ class AnimeSearch(commands.Cog):
 
     async def cog_load(self):
         print('AnimeSearch Cog: Loaded!')
-
+    
+    # Searches MAL for the anime
     @commands.hybrid_command(name='anime')
+    @commands.guild_only()
     async def do_anisearch(self, ctx: commands.Context, *, search: str) -> None:
         try:
             async with aiohttp.ClientSession() as session:
@@ -45,6 +47,7 @@ class AnimeSearch(commands.Cog):
 
     # Gets an anime quote for you
     @commands.hybrid_command(name="aniquote")
+    @commands.guild_only()
     async def get_quote(self, ctx: commands.Context, *, name=None) -> None:
         async with aiohttp.ClientSession() as session:
 
@@ -62,7 +65,6 @@ class AnimeSearch(commands.Cog):
                 # Still kinda wonky
                 async with session.get(f'https://animechan.vercel.app/api/random/character?name={name}') as r:
                     result = await r.json()
-                    print(result)
                     title = result['anime']
                     character = result['character']
                     quotes = result['quote']
