@@ -11,11 +11,56 @@ class Basics(commands.Cog):
         print('Basics Cog: Loaded!')
 
     # Make the bot say something
-    @commands.hybrid_command(name='say')
+    @commands.hybrid_command(name="say")
     @commands.guild_only()
     async def do_say(self, ctx: commands.Context, *, msg: str) -> None:
         await ctx.send(msg)
         await ctx.message.delete()
+    
+    # Slaps someone | I have something fun planned for it (expanding on it soon)
+    @commands.hybrid_command(name="slap")
+    @commands.guild_only()
+    async def do_slap(self, ctx: commands.Context, member: discord.Member) -> None:
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://nekos.best/api/v2/slap') as r:
+                result = await r.json()
+                link = result['results'][0]['url']
+                if r.status in {200, 201}:
+                    embed = discord.Embed(title="Hey you!", description=f"{ctx.author.mention} slapped {member.mention} hard in the face!", colour=0xea213a)
+                    embed.set_image(url=link)
+                    await ctx.send(embed=embed)
+                else:
+                    await ctx.send("`Unable to process command at the moment`")
+    
+    # Hugs someone
+    @commands.hybrid_command(name="hug")
+    @commands.guild_only()
+    async def do_slap(self, ctx: commands.Context, member: discord.Member) -> None:
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://nekos.best/api/v2/hug') as r:
+                result = await r.json()
+                link = result['results'][0]['url']
+                if r.status in {200, 201}:
+                    embed = discord.Embed(title="Sending love!", description=f"{ctx.author.mention} hugged {member.mention}!", colour=0xF77BEF)
+                    embed.set_image(url=link)
+                    await ctx.send(embed=embed)
+                else:
+                    await ctx.send("`Unable to process command at the moment`")
+    
+    # What the fuck is that person saying?
+    @commands.hybrid_command(name="wtfys")
+    @commands.guild_only()
+    async def do_wtfys(self, ctx: commands.Context, member: discord.Member) -> None:
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://nekos.best/api/v2/facepalm') as r:
+                result = await r.json()
+                link = result['results'][0]['url']
+                if r.status in {200, 201}:
+                    embed = discord.Embed(title="WHUUUUT?!", description=f"What the f*** are you saying, {member.mention}?", colour=0xea213a)
+                    embed.set_image(url=link)
+                    await ctx.send(embed=embed)
+                else:
+                    await ctx.send("`Unable to process command at the moment`")
     
     # Summons a random waifu
     @commands.hybrid_command(name="waifu")

@@ -26,9 +26,9 @@ class CakeListener(commands.Cog):
 
         try:
             async with aiohttp.ClientSession() as session:
-                async with session.get('https://api.waifu.im/random/?&gif=true') as r:
+                async with session.get('https://nekos.best/api/v2/wave') as r:
                     result = await r.json()
-                    hello_image = result['images'][0]['url']
+                    hello_image = result['results'][0]['url']
                     embed = discord.Embed(title="Hello there!", description=f"Welcome to the server, {member.mention}!")
                     embed.set_image(url=hello_image)
                     await channel.send(embed=embed)

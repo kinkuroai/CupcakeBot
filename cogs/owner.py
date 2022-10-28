@@ -43,6 +43,24 @@ class Owner(commands.Cog):
         else:
             print("Successfully synced")
     
+    # Change bot activity
+    @commands.command(name='changepresence')
+    @commands.is_owner()
+    @commands.guild_only()
+    async def do_cbp(self, ctx: commands.Context, t: str, *, message: str) -> None:
+        t = t.lower()
+        
+        if t == "playing":
+            activity_type = discord.ActivityType.playing
+        elif t == "watching":
+            activity_type = discord.ActivityType.watching
+        elif t == "listening":
+            activity_type = discord.ActivityType.listening
+        elif t == "streaming":
+            activity_type = discord.ActivityType.streaming
+        
+        await self.bot.change_presence(activity=discord.Activity(type=activity_type, name=message))
+    
     # Get Channel ID and name
     @commands.command(name='getchaninfo', hidden=True)
     @commands.guild_only()

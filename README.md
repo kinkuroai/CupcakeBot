@@ -12,10 +12,11 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 - [X] Find a better MAL API
 - [X] Switched to '[aiohttp](https://pypi.org/project/aiohttp/)' from '[requests](https://pypi.org/project/requests/)'
 - [X] Add logging stuff
-- [ ] Uhh.. Some music?
-- [ ] Add a database
-- [ ] Add more uncommon stuff
+- [ ] Add command descriptions
+- [ ] Fix ?help
 - [ ] Add a better syncing command
+- [ ] Add modals and views
+- [ ] Add a database
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
@@ -23,6 +24,9 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >waifu <sfw/nsfw> - Posts a random waifu picture based on your preference
 * >facts - Sends a random fun fact
 * >aniquote <name of character> - Posts a random quote of a specified character. If no characters are specified, it randomly grabs a quote.
+* >slap <name> - Slaps someone in the server
+* >wtfys <name> - WTF did he just say?
+* >hug <name> - Hugs someone in the server
 
 # Moderator Commands
 * I will be updating the commands here because most of them, discord does better.
@@ -30,6 +34,7 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 
 # Admin Commands
 * >getchaninfo - Gets the channel ID
+* >changepresence <type> <status> - Changes bot's presence (ex: ?changepresence playing with my nuts)
 * >purge <amount> - Purges the messages in a channel with the specified amount
 * >syncnow - Syncs commands
 * >load <extension_name> - Loads specific cogs (ex: ?load cogs.anime | ?load helpers.listener)
@@ -38,13 +43,19 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >reloadall - Reloads all extensions (Kinda wonky at the moment)
 
 # Notes
-* CupcakeBot relies heavily on '[dotenv](https://pypi.org/project/python-dotenv/)' and '[aiohttp](https://pypi.org/project/aiohttp/)'. You can set various variables in the '[.env.example](https://github.com/mavz42/CupcakeBot/blob/main/.env.example)' file and change it to your liking - just make sure you rename it to '.env'.
-* Some commands are still a work in progress since this bot is supposedly just for my personal use.
+* CupcakeBot relies heavily on '[dotenv](https://pypi.org/project/python-dotenv/)', '[aiohttp](https://pypi.org/project/aiohttp/)', and a number of public APIs
+* You can set or define new variables in the '[.env.example](https://github.com/mavz42/CupcakeBot/blob/main/.env.example)' file and change it to your liking - just make sure you rename it to `.env`
+* Some commands are still a work in progress since this bot is supposedly just for my personal use
+* This bot is a work in progress so expect a lot of bugs
 
 # Requirements
-Do `pip install -r requirements.txt` in the cloned directory.\
-Note that this is a work in progress and some stuff might be added or removed.
+Do `pip install -r requirements.txt` in the cloned directory.
 
-# Usage
-To do
-
+# Installation
+* Clone the repo: `git clone https://github.com/mavz42/CupcakeBot.git`
+* If you prefer on having a virtualenv then do it
+* Go into the cloned directory and install requirements: `pip install -r requirements.txt`
+* Copy `.env.example` and rename it to `.env`
+* Change the values inside `.env`
+* Run the bot: `python3 main.py`
+* If you're having some problems with the bot, create a new issue and let's sort it out
