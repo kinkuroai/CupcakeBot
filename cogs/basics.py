@@ -1,5 +1,6 @@
 import discord
 import aiohttp
+import random
 from discord.ext import commands
 
 class Basics(commands.Cog):
@@ -21,8 +22,30 @@ class Basics(commands.Cog):
     @commands.guild_only()
     async def get_waifu(self, ctx: commands.Context, a: str) -> None:
         async with aiohttp.ClientSession() as session:
+
+            tags_sfw = [
+                "uniform",
+                "maid",
+                "waifu",
+                "marin-kitagawa",
+                "mori-calliope",
+                "aiden-shogun",
+                "oppai",
+                "selfies"
+            ]
+
+            tags_nsfw = [
+                "ass",
+                "hentai",
+                "milf",
+                "oral",
+                "paizuri",
+                "ecchi",
+                "ero"
+            ]
+
             if a == 'nsfw':
-                async with session.get('https://api.waifu.im/random/?selected_tags=hentai') as r:
+                async with session.get(f'https://api.waifu.im/random/?selected_tags={random.choice(tags_nsfw)}') as r:
                     result = await r.json()
                     waifu_image = result['images'][0]['url']
                     if r.status in {200, 201}:
@@ -30,7 +53,7 @@ class Basics(commands.Cog):
                     else:
                         await ctx.send("`Unable to process command. Please try again.`")
             elif a == 'sfw':
-                async with session.get('https://api.waifu.im/random/?selected_tags=waifu') as r:
+                async with session.get(f'https://api.waifu.im/random/?selected_tags={random.choice(tags_sfw)}') as r:
                     result = await r.json()
                     waifu_image = result['images'][0]['url']
                     if r.status in {200, 201}:

@@ -65,8 +65,9 @@ async def setup_hook():
 to_load = [load_extensions(), load_helpers()]
 
 # Setup logging (set level to logging.DEBUG for more verbose stuff)
-handler = logging.FileHandler('discord.log', encoding='utf-8', mode='w')
-discord.utils.setup_logging(level=logging.INFO, handler=handler, root=False)
+handler_info = logging.FileHandler('discord_info.log', encoding='utf-8', mode='w')
+discord.utils.setup_logging(level=logging.ERROR, handler=handler_info, root=True)
+discord.utils.setup_logging(level=logging.INFO, handler=handler_info, root=True)
 
 # Running the bot
 async def main():

@@ -1,6 +1,9 @@
 import discord
+import logging
 from discord.ext import commands
 from discord import app_commands
+
+logger = logging.getLogger('discord_info.log')
 
 class Owner(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -19,11 +22,11 @@ class Owner(commands.Cog):
         except:
             chanid = ctx.message.channel.id
             channame = ctx.message.channel.name
-            print(f'Unable to purge: #{channame}(ID:{chanid})')
+            logger.error(f'Unable to purge: #{channame}(ID:{chanid})')
         else:
             chanid = ctx.message.channel.id
             channame = ctx.message.channel.name
-            print(f'Successfully purged: #{channame}(ID:{chanid})')
+            logger.info(f'Successfully purged: #{channame}(ID:{chanid})')
     
     # Sync Commands (Very bad implementation)
     @commands.command(name='syncnow', hidden=True)
@@ -87,6 +90,19 @@ class Owner(commands.Cog):
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
         else:
             await ctx.send(f'**`RELOADED EXTENSION {cog}!`**')
+    
+    # Reloads all extensions | Kinda wonky, sometimes doesn't reload stuff
+    @commands.command(name='reloadall', hidden=True)
+    @commands.guild_only()
+    @commands.is_owner()
+    async def do_reloadall(self, ctx: commands.Context) -> None:
+        try:
+            to_reload = self.bot.extensions
+            for exts in to_reload:
+                await self.bot.reload_extension(f"{exts}")
+                await ctx.send(f'**`RELOADED: {exts}!`**')
+        except:
+            logger.error("RELOAD ALL EXTS FAILED")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Owner(bot))
