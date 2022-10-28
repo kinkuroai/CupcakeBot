@@ -35,7 +35,7 @@ class Basics(commands.Cog):
     # Hugs someone
     @commands.hybrid_command(name="hug")
     @commands.guild_only()
-    async def do_slap(self, ctx: commands.Context, member: discord.Member) -> None:
+    async def do_hug(self, ctx: commands.Context, member: discord.Member) -> None:
         async with aiohttp.ClientSession() as session:
             async with session.get('https://nekos.best/api/v2/hug') as r:
                 result = await r.json()
