@@ -14,10 +14,11 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 - [X] Add logging stuff
 - [X] Switched to `TOML` from `.env`
 - [ ] Add command descriptions
-- [ ] Fix ?help
 - [ ] Add a better syncing command
 - [ ] Add modals and views
 - [ ] Add a database
+- [ ] Level up system
+- [ ] Starboard stuff
 
 # User Commands
 * >say <What you want to say> - Makes the bot say something
@@ -28,19 +29,22 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >slap <name> - Slaps someone in the server
 * >wtfys <name> - WTF did he just say?
 * >hug <name> - Hugs someone in the server
+* >baka <name> - Calls someone baka
 
 # Moderator Commands
 * I will be updating the commands here because most of them, discord does better.
 * >kick <member> - Kicks someone off the guild
+* >addrole <member> <role> - Adds a role to someone (ex: `?addrole @Member fool`)
+* >remrole <member> <role> - Removes a role from someone (ex: `?remrole @Member fool`)
 
 # Admin Commands
 * >getchaninfo - Gets the channel ID
-* >changepresence <type> <status> - Changes bot's presence (ex: ?changepresence playing with my nuts)
+* >changepresence <type> <status> - Changes bot's presence (ex: `?changepresence playing with my nuts`)
 * >purge <amount> - Purges the messages in a channel with the specified amount
 * >syncnow - Syncs commands
-* >load <extension_name> - Loads specific cogs (ex: ?load cogs.anime | ?load helpers.listener)
-* >unload <extension_name> - Unloads specific cogs (ex: ?unload cogs.anime | ?unload helpers.listener)
-* >reload <extension_name> - Reloads specific cogs (ex: ?reload cogs.anime | ?reload helpers.listener)
+* >load <extension_name> - Loads specific cogs (ex: `?load cogs.anime` | `?load helpers.listener`)
+* >unload <extension_name> - Unloads specific cogs (ex: `?unload cogs.anime` | `?unload helpers.listener`)
+* >reload <extension_name> - Reloads specific cogs (ex: `?reload cogs.anime` | `?reload helpers.listener`)
 * >reloadall - Reloads all extensions (Kinda wonky at the moment)
 
 # Notes

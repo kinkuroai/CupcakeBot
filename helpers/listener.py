@@ -2,14 +2,16 @@ import discord
 import aiohttp
 import os
 import tomli
+import logging
 from discord.ext import commands
 
 with open("config.toml", "rb") as c:
     config = tomli.load(c)
 
-WELCOME_CHANNEL = config(['vars']['welcome_channel'])
-AUTOROLE_NAME = os.getenv(['vars']['autorole_name'])
-LOGGING_CHANNEL = os.getenv(['vars'['logging_channel']])
+WELCOME_CHANNEL = config['vars']['welcome_channel']
+AUTOROLE_NAME = config['vars']['autorole_name']
+
+logger = logging.getLogger('discord_info.log')
 
 class CakeListener(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -24,7 +26,6 @@ class CakeListener(commands.Cog):
 
         give_role = discord.utils.get(member.guild.roles, name=AUTOROLE_NAME)
         channel = discord.utils.get(member.guild.channels, name=WELCOME_CHANNEL)
-        logging_chan = discord.utils.get(member.guild.channels, name=LOGGING_CHANNEL)
 
         try:
             async with aiohttp.ClientSession() as session:
@@ -35,7 +36,7 @@ class CakeListener(commands.Cog):
                     embed.set_image(url=hello_image)
                     await channel.send(embed=embed)
                     await member.add_roles(give_role)
-                    await logging_chan.send(f"`{member} joined the server and was given the {give_role} role.`")
+                    logger.info(f"`{member} joined the server and was given the {give_role} role.`")
                     
         except:
             print('Failed to do anything.')

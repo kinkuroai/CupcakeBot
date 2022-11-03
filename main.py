@@ -21,6 +21,7 @@ print("""
 =============================================
 """)
 
+# Load config file
 with open("config.toml", "rb") as c:
     config = tomli.load(c)
 

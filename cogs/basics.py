@@ -47,6 +47,21 @@ class Basics(commands.Cog):
                 else:
                     await ctx.send("`Unable to process command at the moment`")
     
+    # Calls someone baka!
+    @commands.hybrid_command(name="baka", description="Call someone baka!")
+    @commands.guild_only()
+    async def do_baka(self, ctx: commands.Context, member: discord.Member) -> None:
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://nekos.best/api/v2/baka') as r:
+                result = await r.json()
+                link = result['results'][0]['url']
+                if r.status in {200, 201}:
+                    embed = discord.Embed(title="Baka!", description=f"{ctx.author.mention} called {member.mention} baka!", colour=0xF77BEF)
+                    embed.set_image(url=link)
+                    await ctx.send(embed=embed)
+                else:
+                    await ctx.send("`Unable to process command at the moment`")
+    
     # What the fuck is that person saying?
     @commands.hybrid_command(name="wtfys", description="WTF is that guy saying?")
     @commands.guild_only()

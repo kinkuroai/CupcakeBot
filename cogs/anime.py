@@ -1,14 +1,11 @@
 import discord
 import aiohttp, os
-import tomli
+import logging
 from discord.ext import commands
 
 # Still under construction lmao
 
-with open("config.toml", "rb") as c:
-    config = tomli.load(c)
-
-LOGGING_CHANNEL = config['vars']['logging_channel']
+logger = logging.getLogger('discord_info.log')
 
 class AnimeSearch(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -44,8 +41,7 @@ class AnimeSearch(commands.Cog):
                     await ctx.send(embed=embed)
 
         except:
-            logging_chan = discord.utils.get(member.guild.channels, name=LOGGING_CHANNEL)
-            await logging_chan.send("`**SOMETHING WENT WRONG WITH THE ANIME COG**`")
+            logger.error("`**SOMETHING WENT WRONG WITH THE ANIME COG**`")
 
     # Gets an anime quote for you
     @commands.hybrid_command(name="aniquote", description="Pulls an anime quote for you")
