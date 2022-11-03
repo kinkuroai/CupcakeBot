@@ -44,7 +44,7 @@ class Owner(commands.Cog):
             print("Successfully synced")
     
     # Change bot activity
-    @commands.command(name='changepresence')
+    @commands.command(name='changepresence', hidden=True)
     @commands.is_owner()
     @commands.guild_only()
     async def do_cbp(self, ctx: commands.Context, t: str, *, message: str) -> None:

@@ -16,7 +16,7 @@ class AnimeSearch(commands.Cog):
         print('AnimeSearch Cog: Loaded!')
     
     # Searches MAL for the anime
-    @commands.hybrid_command(name='anime')
+    @commands.hybrid_command(name='anime', description="Searches for anime in MAL")
     @commands.guild_only()
     async def do_anisearch(self, ctx: commands.Context, *, search: str) -> None:
         try:
@@ -46,7 +46,7 @@ class AnimeSearch(commands.Cog):
             await logging_chan.send("`**SOMETHING WENT WRONG WITH THE ANIME COG**`")
 
     # Gets an anime quote for you
-    @commands.hybrid_command(name="aniquote")
+    @commands.hybrid_command(name="aniquote", description="Pulls an anime quote for you")
     @commands.guild_only()
     async def get_quote(self, ctx: commands.Context, *, name=None) -> None:
         async with aiohttp.ClientSession() as session:

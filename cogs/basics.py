@@ -11,14 +11,14 @@ class Basics(commands.Cog):
         print('Basics Cog: Loaded!')
 
     # Make the bot say something
-    @commands.hybrid_command(name="say")
+    @commands.hybrid_command(name="say", description="Make the bot say something.")
     @commands.guild_only()
     async def do_say(self, ctx: commands.Context, *, msg: str) -> None:
         await ctx.send(msg)
         await ctx.message.delete()
     
     # Slaps someone | I have something fun planned for it (expanding on it soon)
-    @commands.hybrid_command(name="slap")
+    @commands.hybrid_command(name="slap", description="Slap someone you hate or love")
     @commands.guild_only()
     async def do_slap(self, ctx: commands.Context, member: discord.Member) -> None:
         async with aiohttp.ClientSession() as session:
@@ -33,7 +33,7 @@ class Basics(commands.Cog):
                     await ctx.send("`Unable to process command at the moment`")
     
     # Hugs someone
-    @commands.hybrid_command(name="hug")
+    @commands.hybrid_command(name="hug", description="Hug someone you hate or love")
     @commands.guild_only()
     async def do_hug(self, ctx: commands.Context, member: discord.Member) -> None:
         async with aiohttp.ClientSession() as session:
@@ -48,7 +48,7 @@ class Basics(commands.Cog):
                     await ctx.send("`Unable to process command at the moment`")
     
     # What the fuck is that person saying?
-    @commands.hybrid_command(name="wtfys")
+    @commands.hybrid_command(name="wtfys", description="WTF is that guy saying?")
     @commands.guild_only()
     async def do_wtfys(self, ctx: commands.Context, member: discord.Member) -> None:
         async with aiohttp.ClientSession() as session:
@@ -63,7 +63,7 @@ class Basics(commands.Cog):
                     await ctx.send("`Unable to process command at the moment`")
     
     # Summons a random waifu
-    @commands.hybrid_command(name="waifu")
+    @commands.hybrid_command(name="waifu", description="Summon a waifu")
     @commands.guild_only()
     async def get_waifu(self, ctx: commands.Context, a: str) -> None:
         async with aiohttp.ClientSession() as session:
@@ -107,7 +107,7 @@ class Basics(commands.Cog):
                         await ctx.send("`Unable to process command. Please try again.`")
     
     # Just some random facts you may not know
-    @commands.hybrid_command(name="facts")
+    @commands.hybrid_command(name="facts", description="Pulls a random quote in the internet")
     @commands.guild_only()
     async def get_facts(self, ctx: commands.Context) -> None:
         async with aiohttp.ClientSession() as session:
