@@ -1,12 +1,14 @@
 import discord
 import aiohttp, os
-from dotenv import load_dotenv
+import tomli
 from discord.ext import commands
 
 # Still under construction lmao
 
-load_dotenv()
-LOGGING_CHANNEL = os.getenv('LOGGING_CHANNEL')
+with open("config.toml", "rb") as c:
+    config = tomli.load(c)
+
+LOGGING_CHANNEL = config['vars']['logging_channel']
 
 class AnimeSearch(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:

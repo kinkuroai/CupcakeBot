@@ -1,13 +1,15 @@
 import discord
 import aiohttp
 import os
+import tomli
 from discord.ext import commands
-from dotenv import load_dotenv
 
-load_dotenv()
-WELCOME_CHANNEL = os.getenv('WELCOME_CHANNEL')
-AUTOROLE_NAME = os.getenv('AUTOROLE_NAME')
-LOGGING_CHANNEL = os.getenv('LOGGING_CHANNEL')
+with open("config.toml", "rb") as c:
+    config = tomli.load(c)
+
+WELCOME_CHANNEL = config(['vars']['welcome_channel'])
+AUTOROLE_NAME = os.getenv(['vars']['autorole_name'])
+LOGGING_CHANNEL = os.getenv(['vars'['logging_channel']])
 
 class CakeListener(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:

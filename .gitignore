@@ -41,3 +41,4 @@ Thumbs.db
 .env
 debug.py
 venv
+config.toml

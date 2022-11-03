@@ -1,0 +1,9 @@
+[bot]
+token = "REPLACE WITH YOUR TOKEN"
+activity = "REPLACE THIS"
+description = "REPLACE THIS"
+
+[vars]
+autorole_name = 'REPLACE THIS'
+welcome_channel = "REPLACE THIS"
+logging_channel = 'REPLACE THIS'

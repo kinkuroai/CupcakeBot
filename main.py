@@ -3,15 +3,14 @@ import asyncio
 import os
 import logging
 import utils
+import tomli
 from discord.ext import commands
 from dotenv import load_dotenv
 
 """
-I want to keep main.py really minimal so transferring some stuff to utils.py
-Also planning to migrate to toml as a dotenv replacement - seems a lot cleaner.
+- I want to keep main.py really minimal so transferring some stuff to utils.py
+- Migrated to TOML. Change the values in `config.toml.example` and rename it to `config.toml` for this bot to work.
 """
-
-load_dotenv()
 
 print("""
 =============================================
@@ -22,10 +21,12 @@ print("""
 =============================================
 """)
 
-# dotenv stuff
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-BOT_ACTIVITY = os.getenv("BOT_ACTIVITY")
-BOT_DESCRIPTION = os.getenv("BOT_DESCRIPTION")
+with open("config.toml", "rb") as c:
+    config = tomli.load(c)
+
+BOT_TOKEN = config['bot']['token']
+BOT_ACTIVITY = config['bot']['activity']
+BOT_DESCRIPTION = config['bot']['description']
 
 # The Bot
 bot = commands.Bot(command_prefix=utils.get_prefix, description=BOT_DESCRIPTION, intents=utils.intents, activity=discord.Game(name=BOT_ACTIVITY))

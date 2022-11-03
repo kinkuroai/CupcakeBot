@@ -12,6 +12,7 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 - [X] Find a better MAL API
 - [X] Switched to '[aiohttp](https://pypi.org/project/aiohttp/)' from '[requests](https://pypi.org/project/requests/)'
 - [X] Add logging stuff
+- [X] Switched to `TOML` from `.env`
 - [ ] Add command descriptions
 - [ ] Fix ?help
 - [ ] Add a better syncing command
@@ -43,8 +44,8 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >reloadall - Reloads all extensions (Kinda wonky at the moment)
 
 # Notes
-* CupcakeBot relies heavily on '[dotenv](https://pypi.org/project/python-dotenv/)', '[aiohttp](https://pypi.org/project/aiohttp/)', and a number of public APIs
-* You can set or define new variables in the '[.env.example](https://github.com/mavz42/CupcakeBot/blob/main/.env.example)' file and change it to your liking - just make sure you rename it to `.env`
+* CupcakeBot relies heavily on '[tomli](https://pypi.org/project/tomli/)', '[aiohttp](https://pypi.org/project/aiohttp/)', and a number of public APIs
+* You can set or define new variables in the '[config.toml.example](https://github.com/mavz42/CupcakeBot/blob/main/config.toml.example)' file and change it to your liking - just make sure you rename it to `config.toml`
 * Some commands are still a work in progress since this bot is supposedly just for my personal use
 * This bot is a work in progress so expect a lot of bugs
 
@@ -55,7 +56,7 @@ Do `pip install -r requirements.txt` in the cloned directory.
 * Clone the repo: `git clone https://github.com/mavz42/CupcakeBot.git`
 * If you prefer on having a virtualenv then do it
 * Go into the cloned directory and install requirements: `pip install -r requirements.txt`
-* Copy `.env.example` and rename it to `.env`
-* Change the values inside `.env`
+* Copy `config.toml.example` and rename it to `config.toml`
+* Change the values inside `config.toml`
 * Run the bot: `python3 main.py`
 * If you're having some problems with the bot, create a new issue and let's sort it out
