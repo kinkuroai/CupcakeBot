@@ -23,14 +23,16 @@ class AnimeSearch(commands.Cog):
 
                 async with session.get(f'https://api.jikan.moe/v4/anime/?q={search}') as r:
                     result = await r.json()
+                    
+                    data = result['data'][0]
 
-                    title_english = result['data'][0]['title_english']
-                    title_japanese = result['data'][0]['title_japanese']
-                    synopsis = result['data'][0]['synopsis']
-                    image = result['data'][0]['images']['jpg']['image_url']
-                    score = result['data'][0]['score']
-                    episodes = result['data'][0]['episodes']
-                    status = result['data'][0]['status']
+                    title_english = data['title_english']
+                    title_japanese = data['title_japanese']
+                    synopsis = data['synopsis']
+                    image = data['images']['jpg']['image_url']
+                    score = data['score']
+                    episodes = data['episodes']
+                    status = data['status']
 
                     embed = discord.Embed(title=f"{title_english} - {title_japanese}", description=f"{synopsis}", colour=0x236DC9)
                     embed.set_image(url=image)
