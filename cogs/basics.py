@@ -1,7 +1,12 @@
 import discord
 import aiohttp
 import random
+import tomli
 from discord.ext import commands
+
+# Loads config file
+with open("config.toml", "rb") as c:
+    config = tomli.load(c)
 
 class Basics(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -74,6 +79,20 @@ class Basics(commands.Cog):
                     embed = discord.Embed(title="WHUUUUT?!", description=f"What the f*** are you saying, {member.mention}?", colour=0xea213a)
                     embed.set_image(url=link)
                     await ctx.send(embed=embed)
+                else:
+                    await ctx.send("`Unable to process command at the moment`")
+    
+    # Shortens a URL. Cleaner this way.
+    @commands.command(name="shorten")
+    @commands.is_owner()
+    async def do_shorten(self, ctx, to_shorten):
+        key = config['keys']['cuttly_key']
+        async with aiohttp.ClientSession() as session:
+            async with session.get('http://cutt.ly/api/api.php?key={}&short={}'.format(key, to_shorten)) as r:
+                await ctx.message.delete()
+                result = await r.json()
+                if r.status in {200, 201}:
+                    await ctx.send(result['url']['shortLink'])
                 else:
                     await ctx.send("`Unable to process command at the moment`")
     

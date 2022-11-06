@@ -1,10 +1,16 @@
 import discord
 import logging
+import utils
+import tomli
 from discord.ext import commands
 
 """
 Going to rewrite the mod commands since most of them, discord does a lot better.
 """
+
+# Loads config file
+with open("config.toml", "rb") as c:
+    config = tomli.load(c)
 
 logger = logging.getLogger('discord_info.log')
 
@@ -26,7 +32,7 @@ class Mods(commands.Cog):
         except:
             logger.error(f"`Unable to add role to {memeber.display_name}`")
         else:
-            await ctx.send(f"`Added {role} role to {member.display_name}`")
+            await utils.send_embed(ctx, "ROLE ADDED!", f"Added {role.mention} role to {member.mention}")
     
     # Remove Role
     @commands.command(name="remrole")
@@ -39,7 +45,7 @@ class Mods(commands.Cog):
         except:
             logger.error(f"`Unable to remove role from {member.display_name}`")
         else:
-            await ctx.send(f"`Removed {role} from {member.display_name}`")
+            await utils.send_embed(ctx, "ROLE REMOVED!", f"Removed {role.mention} from {member.mention}")
 
     # Kick someone
     @commands.command(name='kick')

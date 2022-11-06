@@ -30,6 +30,7 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >wtfys <name> - WTF did he just say?
 * >hug <name> - Hugs someone in the server
 * >baka <name> - Calls someone baka
+* >shorten <url> - Shortens a url
 
 # Moderator Commands
 * I will be updating the commands here because most of them, discord does better.

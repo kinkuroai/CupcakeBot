@@ -7,3 +7,6 @@ description = "REPLACE THIS"
 autorole_name = 'REPLACE THIS'
 welcome_channel = "REPLACE THIS"
 logging_channel = 'REPLACE THIS'
+
+[keys]
+cuttly_key = "REPLACE THIS" # https://cutt.ly/api-documentation

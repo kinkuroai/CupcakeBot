@@ -46,7 +46,6 @@ async def setup_hook():
     print(f'Logged in as: {bot.user.name}')
     print("Bot successfully connected!\n")
 
-# Running the bot
 async def main():
     async with bot:
         print("==================\nEXTENSIONS AND HELPERS\n==================\n")

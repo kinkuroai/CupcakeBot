@@ -32,3 +32,9 @@ async def load_helpers(bot):
                 await bot.load_extension(f"helpers.{filename[:-3]}")
     except:
         print("Loading Helpers failed!")
+
+async def send_embed(ctx, t, *d):
+    avatar = discord.File("assets/aqua-peace.png", filename="avatar.png")
+    embed = discord.Embed(title=t, description=" ".join(d), colour=0x303FFF)
+    embed.set_thumbnail(url="attachment://avatar.png")
+    return await ctx.send(file=avatar, embed=embed)
