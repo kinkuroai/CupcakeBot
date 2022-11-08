@@ -1,16 +1,11 @@
 import discord
 import logging
 import utils
-import tomli
 from discord.ext import commands
 
 """
 Going to rewrite the mod commands since most of them, discord does a lot better.
 """
-
-# Loads config file
-with open("config.toml", "rb") as c:
-    config = tomli.load(c)
 
 logger = logging.getLogger('discord_info.log')
 

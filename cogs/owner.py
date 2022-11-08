@@ -1,12 +1,8 @@
 import discord
 import logging
-import tomli
+import utils
 from discord.ext import commands
 from discord import app_commands
-
-# Loads config file
-with open("config.toml", "rb") as c:
-    config = tomli.load(c)
 
 logger = logging.getLogger('discord_info.log')
 

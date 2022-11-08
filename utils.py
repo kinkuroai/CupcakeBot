@@ -1,10 +1,27 @@
 import discord
 import os
+import tomli
 from discord.ext import commands
 
 """
 Will transfer all utility stuff here
 """
+
+with open("config.toml", "rb") as c:
+    print("Loaded config!")
+    config = tomli.load(c)
+
+# Bot Variables
+BOT_TOKEN = config['bot']['token']
+BOT_ACTIVITY = config['bot']['activity']
+BOT_DESCRIPTION = config['bot']['description']
+
+# API Keys
+CUTTLY_KEY = config['keys']['cuttly_key']
+
+# Random channel stuff
+WELCOME_CHANNEL = config['vars']['welcome_channel']
+AUTOROLE_NAME = config['vars']['autorole_name']
 
 # Intents
 intents = discord.Intents.default()
@@ -32,9 +49,3 @@ async def load_helpers(bot):
                 await bot.load_extension(f"helpers.{filename[:-3]}")
     except:
         print("Loading Helpers failed!")
-
-async def send_embed(ctx, t, *d):
-    avatar = discord.File("assets/aqua-peace.png", filename="avatar.png")
-    embed = discord.Embed(title=t, description=" ".join(d), colour=0x303FFF)
-    embed.set_thumbnail(url="attachment://avatar.png")
-    return await ctx.send(file=avatar, embed=embed)

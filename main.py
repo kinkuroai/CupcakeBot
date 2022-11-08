@@ -21,16 +21,8 @@ print("""
 =============================================
 """)
 
-# Load config file
-with open("config.toml", "rb") as c:
-    config = tomli.load(c)
-
-BOT_TOKEN = config['bot']['token']
-BOT_ACTIVITY = config['bot']['activity']
-BOT_DESCRIPTION = config['bot']['description']
-
 # The Bot
-bot = commands.Bot(command_prefix=utils.get_prefix, description=BOT_DESCRIPTION, intents=utils.intents, activity=discord.Game(name=BOT_ACTIVITY))
+bot = commands.Bot(command_prefix=utils.get_prefix, description=utils.BOT_DESCRIPTION, intents=utils.intents, activity=discord.Game(name=utils.BOT_ACTIVITY))
 
 # Stuff to load
 to_load = [utils.load_extensions(bot), utils.load_helpers(bot)]
@@ -52,6 +44,6 @@ async def main():
         for exts in to_load:
             await exts
         print("\n==================\nEXTENSION AND HELPERS\n==================\n")
-        await bot.start(BOT_TOKEN)
+        await bot.start(utils.BOT_TOKEN)
 
 asyncio.run(main())

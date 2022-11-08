@@ -1,15 +1,9 @@
 import discord
 import aiohttp
 import os
-import tomli
+import utils
 import logging
 from discord.ext import commands
-
-with open("config.toml", "rb") as c:
-    config = tomli.load(c)
-
-WELCOME_CHANNEL = config['vars']['welcome_channel']
-AUTOROLE_NAME = config['vars']['autorole_name']
 
 logger = logging.getLogger('discord_info.log')
 
@@ -24,8 +18,8 @@ class CakeListener(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
 
-        give_role = discord.utils.get(member.guild.roles, name=AUTOROLE_NAME)
-        channel = discord.utils.get(member.guild.channels, name=WELCOME_CHANNEL)
+        give_role = discord.utils.get(member.guild.roles, name=utils.AUTOROLE_NAME)
+        channel = discord.utils.get(member.guild.channels, name=utils.WELCOME_CHANNEL)
 
         try:
             async with aiohttp.ClientSession() as session:
