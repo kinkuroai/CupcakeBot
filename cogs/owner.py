@@ -7,7 +7,7 @@ from discord import app_commands
 logger = logging.getLogger('discord_info.log')
 
 class Owner(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot: commands.Bot = bot
 
     async def cog_load(self):

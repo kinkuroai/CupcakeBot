@@ -7,7 +7,7 @@ from discord.ext import commands
 
 class Basics(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     async def cog_load(self):
         print('Basics Cog: Loaded!')
@@ -82,7 +82,7 @@ class Basics(commands.Cog):
     # Shortens a URL. Cleaner this way.
     @commands.command(name="shorten", description="Shortens a link for you")
     @commands.is_owner()
-    async def do_shorten(self, ctx, to_shorten):
+    async def do_shorten(self, ctx: commands.Context, to_shorten) -> None:
         key = utils.CUTTLY_KEY
         async with aiohttp.ClientSession() as session:
             async with session.get('http://cutt.ly/api/api.php?key={}&short={}'.format(key, to_shorten)) as r:

@@ -9,7 +9,7 @@ logger = logging.getLogger('discord_info.log')
 
 class AnimeSearch(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     async def cog_load(self):
         print('AnimeSearch Cog: Loaded!')

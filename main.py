@@ -5,11 +5,11 @@ import logging
 import utils
 import tomli
 from discord.ext import commands
-from dotenv import load_dotenv
 
 """
 - I want to keep main.py really minimal so transferring some stuff to utils.py
 - Migrated to TOML. Change the values in `config.toml.example` and rename it to `config.toml` for this bot to work.
+- Run ?db create to create database
 """
 
 print("""

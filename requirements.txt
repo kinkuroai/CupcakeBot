@@ -1,5 +1,6 @@
 aiohttp==3.8.3
 aiosignal==1.2.0
+aiosqlite==0.17.0
 async-timeout==4.0.2
 attrs==22.1.0
 charset-normalizer==2.1.1
@@ -14,4 +15,5 @@ six==1.16.0
 spinners==0.0.24
 termcolor==2.0.1
 tomli==2.0.1
+typing_extensions==4.4.0
 yarl==1.8.1

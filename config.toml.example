@@ -2,6 +2,7 @@
 token = "REPLACE WITH YOUR TOKEN"
 activity = "REPLACE THIS"
 description = "REPLACE THIS"
+prefix = "?"
 
 [vars]
 autorole_name = 'REPLACE THIS'
