@@ -40,6 +40,7 @@ Thumbs.db
 #############
 .env
 debug.py
-venv
+venvs
 config.toml
 assets
+*.db
