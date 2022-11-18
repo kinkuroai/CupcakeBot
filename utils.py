@@ -52,7 +52,7 @@ async def load_helpers(bot):
     except:
         print("Loading Helpers failed!")
 
-# DB STUFF
+# Send embeds
 async def send_embed(ctx: commands.Context, t, *d):
     embed = discord.Embed(title=t, description=" ".join(d), colour=0x303FFF)
     embed.set_thumbnail(url=ctx.author.avatar)

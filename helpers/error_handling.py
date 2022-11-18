@@ -3,6 +3,7 @@ import traceback
 import sys
 from discord.ext import commands
 from discord import app_commands
+import utils
 import logging
 
 logger = logging.getLogger('discord_info.log')
@@ -39,6 +40,14 @@ class CommandErrorHandler(commands.Cog):
             await ctx.send("`You do not have the required permissions to use this command!`")
             logger.error(f"{ctx.author.display_name} tried to access something he's not supposed to.")
         
+        # If the invoked commands raises an exception
+        elif isinstance(error, commands.CommandInvokeError(e)):
+            logger.error(e)
+        
+        # If invoker is not the owner
+        elif isinstance(error, commands.NotOwner):
+            await ctx.send("`You are not the bot owner.`")
+
         # If Syncing fails
         elif isinstance(error, app_commands.CommandSyncFailure):
             await ctx.send(f"Failed to sync")

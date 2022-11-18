@@ -1,5 +1,6 @@
 import discord
 import logging
+import aiosqlite
 import utils
 from discord.ext import commands
 
@@ -62,7 +63,46 @@ class Mods(commands.Cog):
     @commands.has_guild_permissions(ban_members=True)
     @commands.guild_only()
     async def do_warn(self, ctx: commands.Context, member: discord.Member, *, reason=None) -> None:
-        pass
+        conn = await aiosqlite.connect("bot.db")
+        cur = await conn.cursor()
+        print("Add Warn")
+        await cur.execute(f'SELECT * FROM USERS WHERE USER_ID="{member.id}";')
+        to_warn = await cur.fetchone()
+        if to_warn is None:
+            await utils.send_embed(ctx, "WARNING!", "THE USER IS NOT VERIFIED, KICK/BAN INSTEAD")
+        else:
+            warn_query = f'''
+            UPDATE USERS
+            SET WARNS = WARNS + 1
+            WHERE USER_ID = {member.id}'''
+
+            await cur.execute(warn_query)
+            await conn.commit()
+            await utils.send_embed(ctx, "WARNING GIVEN!", f"{member.mention} has been warned!")
+        await conn.close()
+
+    # Clears someone's warnings
+    @commands.command(name='clearwarn')
+    @commands.has_guild_permissions(ban_members=True)
+    @commands.guild_only()
+    async def do_clearwarn(self, ctx: commands.Context, member: discord.Member, *, reason=None) -> None:
+        conn = await aiosqlite.connect("bot.db")
+        cur = await conn.cursor()
+        print("Clear Warn")
+        await cur.execute(f'SELECT * FROM USERS WHERE USER_ID="{member.id}";')
+        to_warn = await cur.fetchone()
+        if to_warn is None:
+            await utils.send_embed(ctx, "WARNING!", "THE USER IS NOT VERIFIED, PLEASE VERIFY!")
+        else:
+            warn_query = f'''
+            UPDATE USERS
+            SET WARNS = 0
+            WHERE USER_ID = {member.id}'''
+
+            await cur.execute(warn_query)
+            await conn.commit()
+            await utils.send_embed(ctx, "WARNINGS CLEARED!", f"{member.mention} has been cleared of warnings!")
+        await conn.close()
 
     # Mutes someone
     @commands.command(name='mute')

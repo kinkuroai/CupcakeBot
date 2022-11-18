@@ -41,6 +41,8 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >kick <member> - Kicks someone off the guild
 * >addrole <member> <role> - Adds a role to someone (ex: `?addrole @Member fool`)
 * >remrole <member> <role> - Removes a role from someone (ex: `?remrole @Member fool`)
+* >warn <member> - Gives a warning to a guild member (ex: `?warn @Member`) | **Uses DB**
+* >clearwarn <member> - Removes warnings of a user | **Uses DB**
 
 # Admin Commands
 * Default prefix is `?`
