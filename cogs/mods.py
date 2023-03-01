@@ -109,7 +109,33 @@ class Mods(commands.Cog):
     @commands.has_guild_permissions(ban_members=True)
     @commands.guild_only()
     async def do_mute(self, ctx: commands.Context, member: discord.Member, *, reason=None) -> None:
-        pass
+        """Mutes a member in the current channel."""
+        channel = ctx.channel
+        role = discord.utils.get(ctx.guild.roles, name="Muted")
+        if not role:
+            # Create a new "Muted" role
+            role = await ctx.guild.create_role(name="Muted", reason="Mute command")
+            for channel in ctx.guild.channels:
+                await channel.set_permissions(role, send_messages=False)
+        await member.add_roles(role, reason="Mute command")
+        await utils.send_embed(ctx, "MEMBER MUTED!", f"{member.mention} has been muted!")
+
+    # Unmutes someone
+    @commands.command(name='unmute')
+    @commands.has_guild_permissions(ban_members=True)
+    @commands.guild_only()
+    async def do_unmute(self, ctx: commands.Context, member: discord.Member, *, reason=None) -> None:
+        """Unmutes a member in the current channel."""
+        channel = ctx.channel
+        role = discord.utils.get(ctx.guild.roles, name="Muted")
+        if not role:
+            await ctx.send("No 'Muted' role found.")
+            return
+        if role not in member.roles:
+            await ctx.send(f"{member.mention} is not muted.")
+            return
+        await member.remove_roles(role, reason="Unmute command")
+        await utils.send_embed(ctx, "MEMBER UNMUTED!", f"{member.mention} has been unmuted!")
 
     # Bans someone
     @commands.command(name='ban')
