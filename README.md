@@ -43,6 +43,8 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >remrole <member> <role> - Removes a role from someone (ex: `?remrole @Member fool`)
 * >warn <member> - Gives a warning to a guild member (ex: `?warn @Member`) | **Uses DB**
 * >clearwarn <member> - Removes warnings of a user | **Uses DB**
+* >mute <member> - Mutes a member by giving a role called "Muted" (ex: `?mute @Member`) | If `Muted` role does not exist, it will create one
+* >unmute <member> - Unutes a member by removing a role called "Muted" (ex: `?mute @Member`)
 
 # Admin Commands
 * Default prefix is `?`
@@ -66,6 +68,7 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * You can set or define new variables in the '[config.toml.example](https://github.com/mavz42/CupcakeBot/blob/main/config.toml.example)' file and change it to your liking - just make sure you rename it to `config.toml`
 * Some commands are still a work in progress since this bot is supposedly just for my personal use
 * This bot is a work in progress so expect a lot of bugs
+* `?reloadall` is wonky at the moment - it is better to reload extensions individually
 
 # Notes++
 So yeah, there's a config file and a database. The reason why I wanted it this way is to keep easy-to-change stuff inside the `config.toml` file and some saveable stuff in the database. Dirty, bad practice, I know. But that's just me.
