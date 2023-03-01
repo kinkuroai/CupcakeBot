@@ -111,6 +111,8 @@ class Owner(commands.Cog):
             await ctx.send(f'**`RELOADED EXTENSION {cog}!`**')
     
     # Reloads all extensions | Kinda wonky, sometimes doesn't reload stuff
+    # Warning: Experimental. Sometimes does not load extensions even if it says successful
+    # It's better to reload individually
     @commands.command(name='reloadall', hidden=True)
     @commands.guild_only()
     @commands.is_owner()
