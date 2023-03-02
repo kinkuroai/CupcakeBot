@@ -45,6 +45,7 @@ This bot was made using the amazing [Discord.py API](https://github.com/Rapptz/d
 * >clearwarn <member> - Removes warnings of a user | **Uses DB**
 * >mute <member> - Mutes a member by giving a role called "Muted" (ex: `?mute @Member`) | If `Muted` role does not exist, it will create one
 * >unmute <member> - Unutes a member by removing a role called "Muted" (ex: `?mute @Member`)
+* >poll <question> <option1> <option2> <option3> <option4> - Creates a reaction poll with up to 4 choices (Default: 2) (ex: `?poll "Do you like this command?" "Yes" "No") | I will probably merge this with the mod cog sooner or later but for now it stays as a separate cog.
 
 # Admin Commands
 * Default prefix is `?`

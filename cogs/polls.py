@@ -6,6 +6,8 @@ class Poll(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.has_permissions(ban_members=True)
+    @commands.guild_only()
     async def poll(self, ctx, question, option1, option2, option3=None, option4=None):
         # create embed
         embed = discord.Embed(title="It's Poll Time", description=question, color=discord.Color.blue())
@@ -24,7 +26,6 @@ class Poll(commands.Cog):
         # add reactions
         await message.add_reaction('👍')
         await message.add_reaction('👎')
-        await message.add_reaction('🤷')
         if option3:
             await message.add_reaction('👌')
         if option4:
