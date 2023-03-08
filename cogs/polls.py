@@ -4,11 +4,14 @@ from discord.ext import commands
 class Poll(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+    
+    async def cog_load(self):
+        print("Polls Cog: Loaded")
 
-    @commands.command()
+    @commands.command(name="poll")
     @commands.has_permissions(ban_members=True)
     @commands.guild_only()
-    async def poll(self, ctx, question, option1, option2, option3=None, option4=None):
+    async def do_poll(self, ctx, question, option1, option2, option3=None, option4=None):
         # create embed
         embed = discord.Embed(title="It's Poll Time", description=question, color=discord.Color.blue())
         embed.add_field(name='Choice 1', value=option1, inline=True)
